@@ -1,0 +1,120 @@
+﻿Version=6.5
+NumberOfModules=3
+Module1=GT
+Module2=Starter
+Module3=St
+Build1=Default,com.facebook.mautoliker
+ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="19"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~'************ Google Play Services Base ************~\n~AddApplicationText(~\n~   <activity android:name="com.google.android.gms.common.api.GoogleApiActivity"~\n~  android:theme="@android:style/Theme.Translucent.NoTitleBar"~\n~  android:exported="false"/>~\n~    <meta-data~\n~  android:name="com.google.android.gms.version"~\n~  android:value="@integer/google_play_services_version" />~\n~)~\n~~\n~'************ Google Play Services Base (end) ************~\n~~\n~'************ Firebase Ads ************~\n~AddApplicationText(~\n~  <activity~\n~  android:name="com.google.android.gms.ads.AdActivity"~\n~  android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"~\n~  android:theme="@android:style/Theme.Translucent" />~\n~  <activity android:name="com.google.android.gms.ads.purchase.InAppPurchaseActivity"~\n~  android:theme="@style/Theme.IAPTheme"/>~\n~)~\n~'************ Firebase Ads (end) ************
+IconFile=
+NumberOfFiles=1
+File1=bg.png
+NumberOfLibraries=4
+Library1=core
+Library2=firebaseadmob
+Library3=webviewsettings
+Library4=clipboard
+@EndOfDesignText@
+#Region  Project Attributes 
+	#ApplicationLabel: Facebook Auto Liker
+	#VersionCode: 1
+	#VersionName: 1.0
+	'SupportedOrientations possible values: unspecified, landscape or portrait.
+	#SupportedOrientations: unspecified
+	#CanInstallToExternalStorage: False
+#End Region
+
+#Region  Activity Attributes 
+	#FullScreen: False
+	#IncludeTitle: False
+#End Region
+
+Sub Process_Globals
+	'These global variables will be declared once when the application starts.
+	'These variables can be accessed from all modules.
+Dim ad1,ad2 As Timer
+End Sub
+
+Sub Globals
+	Dim b1,b2 As Button
+Dim tt As Label
+
+Dim b As AdView
+Dim i As InterstitialAd
+Dim bg As BitmapDrawable
+Dim bbg As ColorDrawable
+End Sub
+
+Sub Activity_Create(FirstTime As Boolean)
+	bg.Initialize(LoadBitmap(File.DirAssets,"bg.png"))
+	Activity.Color = Colors.White
+	bg.Gravity = Gravity.CENTER
+	Activity.Background = bg
+'	b.Initialize2("b","ca-app-pub-4173348573252986/9416062553",b.SIZE_SMART_BANNER)
+'	Dim h As Int
+'	If GetDeviceLayoutValues.ApproximateScreenSize < 6 Then
+'		If 100%x > 100%y Then h = 32dip Else h = 50dip
+'	Else
+'		h = 90dip
+'	End If
+'	Activity.AddView(b,0dip,100%y - h,100%x,h)
+'	b.LoadAd
+	
+	i.Initialize("i","ca-app-pub-4173348573252986/4846262158")
+	i.LoadAd
+	
+	bbg.Initialize(Colors.Black,15)
+b1.Initialize("b1")
+b1.Text = "Get Token"
+b1.Background = bbg
+b1.TextColor = Colors.Yellow
+Activity.AddView(b1,20%x,25%y,60%x,50dip)
+
+b2.Initialize("b2")
+b2.Text = "Start Auto Liker"
+b2.Background = bbg
+	b2.TextColor = Colors.Yellow
+Activity.AddView(b2,20%x,b1.Top+b1.Height+3%y,60%x,50dip)
+
+	tt.Initialize("")
+	tt.Text = "Facebook Auto Liker"
+	tt.Typeface = Typeface.DEFAULT_BOLD
+	tt.TextColor = Colors.Green
+	tt.TextSize = 20
+	tt.Gravity = Gravity.CENTER
+	tt.Color = Colors.Black
+	Activity.AddView(tt,0%x,0%y,100%x,50dip)
+	
+	ad1.Initialize("ad1",100)
+	ad1.Enabled = False
+	ad2.Initialize("ad2",60000)
+	ad2.Enabled = True
+End Sub
+
+Sub b1_Click
+	StartActivity(GT)
+End Sub
+
+Sub b2_Click
+	StartActivity(St)
+End Sub
+
+Sub ad1_Tick
+	If i.Ready Then i.Show Else i.LoadAd
+	ad1.Enabled = False
+End Sub
+
+Sub ad2_Tick
+	If i.Ready Then i.Show Else i.LoadAd
+End Sub
+
+Sub i_AdClosed
+	i.LoadAd
+End Sub
+
+Sub Activity_Resume
+
+End Sub
+
+Sub Activity_Pause (UserClosed As Boolean)
+
+End Sub
