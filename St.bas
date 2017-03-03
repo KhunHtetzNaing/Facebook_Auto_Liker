@@ -38,15 +38,15 @@ Sub Activity_Create(FirstTime As Boolean)
 	tt.Color = Colors.Black
 	Activity.AddView(tt,0%x,0%y,100%x,50dip)
 	
-'	b.Initialize2("b","ca-app-pub-4173348573252986/9416062553",b.SIZE_SMART_BANNER)
-'	Dim h As Int
-'	If GetDeviceLayoutValues.ApproximateScreenSize < 6 Then
-'		If 100%x > 100%y Then h = 32dip Else h = 50dip
-'	Else
-'		h = 90dip
-'	End If
-'	Activity.AddView(b,0dip,100%y - h,100%x,h)
-'	b.LoadAd
+	b.Initialize2("b","ca-app-pub-4173348573252986/9416062553",b.SIZE_SMART_BANNER)
+	Dim h As Int
+	If GetDeviceLayoutValues.ApproximateScreenSize < 6 Then
+		If 100%x > 100%y Then h = 32dip Else h = 50dip
+	Else
+		h = 90dip
+	End If
+	Activity.AddView(b,0dip,100%y - h,100%x,h)
+	b.LoadAd
 	
 	i.Initialize("i","ca-app-pub-4173348573252986/4846262158")
 	i.LoadAd

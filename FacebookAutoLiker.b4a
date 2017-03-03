@@ -1,8 +1,8 @@
 ﻿Version=6.5
 NumberOfModules=3
 Module1=GT
-Module2=Starter
-Module3=St
+Module2=St
+Module3=Starter
 Build1=Default,com.facebook.mautoliker
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: http://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="19"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~'End of default text.~\n~~\n~'************ Google Play Services Base ************~\n~AddApplicationText(~\n~   <activity android:name="com.google.android.gms.common.api.GoogleApiActivity"~\n~  android:theme="@android:style/Theme.Translucent.NoTitleBar"~\n~  android:exported="false"/>~\n~    <meta-data~\n~  android:name="com.google.android.gms.version"~\n~  android:value="@integer/google_play_services_version" />~\n~)~\n~~\n~'************ Google Play Services Base (end) ************~\n~~\n~'************ Firebase Ads ************~\n~AddApplicationText(~\n~  <activity~\n~  android:name="com.google.android.gms.ads.AdActivity"~\n~  android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"~\n~  android:theme="@android:style/Theme.Translucent" />~\n~  <activity android:name="com.google.android.gms.ads.purchase.InAppPurchaseActivity"~\n~  android:theme="@style/Theme.IAPTheme"/>~\n~)~\n~'************ Firebase Ads (end) ************
 IconFile=
@@ -49,15 +49,15 @@ Sub Activity_Create(FirstTime As Boolean)
 	Activity.Color = Colors.White
 	bg.Gravity = Gravity.CENTER
 	Activity.Background = bg
-'	b.Initialize2("b","ca-app-pub-4173348573252986/9416062553",b.SIZE_SMART_BANNER)
-'	Dim h As Int
-'	If GetDeviceLayoutValues.ApproximateScreenSize < 6 Then
-'		If 100%x > 100%y Then h = 32dip Else h = 50dip
-'	Else
-'		h = 90dip
-'	End If
-'	Activity.AddView(b,0dip,100%y - h,100%x,h)
-'	b.LoadAd
+	b.Initialize2("b","ca-app-pub-4173348573252986/9416062553",b.SIZE_SMART_BANNER)
+	Dim h As Int
+	If GetDeviceLayoutValues.ApproximateScreenSize < 6 Then
+		If 100%x > 100%y Then h = 32dip Else h = 50dip
+	Else
+		h = 90dip
+	End If
+	Activity.AddView(b,0dip,100%y - h,100%x,h)
+	b.LoadAd
 	
 	i.Initialize("i","ca-app-pub-4173348573252986/4846262158")
 	i.LoadAd

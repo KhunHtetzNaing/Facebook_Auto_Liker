@@ -333,8 +333,8 @@ public anywheresoftware.b4a.admobwrapper.AdViewWrapper.InterstitialAdWrapper _i 
 public anywheresoftware.b4a.objects.drawable.BitmapDrawable _bg = null;
 public anywheresoftware.b4a.objects.drawable.ColorDrawable _bbg = null;
 public com.facebook.mautoliker.gt _gt = null;
-public com.facebook.mautoliker.starter _starter = null;
 public com.facebook.mautoliker.st _st = null;
+public com.facebook.mautoliker.starter _starter = null;
 
 public static boolean isAnyActivityVisible() {
     boolean vis = false;
@@ -343,6 +343,7 @@ vis = vis | (gt.mostCurrent != null);
 vis = vis | (st.mostCurrent != null);
 return vis;}
 public static String  _activity_create(boolean _firsttime) throws Exception{
+int _h = 0;
  //BA.debugLineNum = 31;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
  //BA.debugLineNum = 32;BA.debugLine="bg.Initialize(LoadBitmap(File.DirAssets,\"bg.png\")";
 mostCurrent._bg.Initialize((android.graphics.Bitmap)(anywheresoftware.b4a.keywords.Common.LoadBitmap(anywheresoftware.b4a.keywords.Common.File.getDirAssets(),"bg.png").getObject()));
@@ -352,6 +353,25 @@ mostCurrent._activity.setColor(anywheresoftware.b4a.keywords.Common.Colors.White
 mostCurrent._bg.setGravity(anywheresoftware.b4a.keywords.Common.Gravity.CENTER);
  //BA.debugLineNum = 35;BA.debugLine="Activity.Background = bg";
 mostCurrent._activity.setBackground((android.graphics.drawable.Drawable)(mostCurrent._bg.getObject()));
+ //BA.debugLineNum = 36;BA.debugLine="b.Initialize2(\"b\",\"ca-app-pub-4173348573252986/94";
+mostCurrent._b.Initialize2(mostCurrent.activityBA,"b","ca-app-pub-4173348573252986/9416062553",mostCurrent._b.SIZE_SMART_BANNER);
+ //BA.debugLineNum = 37;BA.debugLine="Dim h As Int";
+_h = 0;
+ //BA.debugLineNum = 38;BA.debugLine="If GetDeviceLayoutValues.ApproximateScreenSize <";
+if (anywheresoftware.b4a.keywords.Common.GetDeviceLayoutValues(mostCurrent.activityBA).getApproximateScreenSize()<6) { 
+ //BA.debugLineNum = 39;BA.debugLine="If 100%x > 100%y Then h = 32dip Else h = 50dip";
+if (anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (100),mostCurrent.activityBA)>anywheresoftware.b4a.keywords.Common.PerYToCurrent((float) (100),mostCurrent.activityBA)) { 
+_h = anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (32));}
+else {
+_h = anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (50));};
+ }else {
+ //BA.debugLineNum = 41;BA.debugLine="h = 90dip";
+_h = anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (90));
+ };
+ //BA.debugLineNum = 43;BA.debugLine="Activity.AddView(b,0dip,100%y - h,100%x,h)";
+mostCurrent._activity.AddView((android.view.View)(mostCurrent._b.getObject()),anywheresoftware.b4a.keywords.Common.DipToCurrent((int) (0)),(int) (anywheresoftware.b4a.keywords.Common.PerYToCurrent((float) (100),mostCurrent.activityBA)-_h),anywheresoftware.b4a.keywords.Common.PerXToCurrent((float) (100),mostCurrent.activityBA),_h);
+ //BA.debugLineNum = 44;BA.debugLine="b.LoadAd";
+mostCurrent._b.LoadAd();
  //BA.debugLineNum = 46;BA.debugLine="i.Initialize(\"i\",\"ca-app-pub-4173348573252986/484";
 mostCurrent._i.Initialize(mostCurrent.activityBA,"i","ca-app-pub-4173348573252986/4846262158");
  //BA.debugLineNum = 47;BA.debugLine="i.LoadAd";
@@ -484,8 +504,8 @@ public static void initializeProcessGlobals() {
 		try {
 		        main._process_globals();
 gt._process_globals();
-starter._process_globals();
 st._process_globals();
+starter._process_globals();
 		
         } catch (Exception e) {
 			throw new RuntimeException(e);
